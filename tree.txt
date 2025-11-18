@@ -1,0 +1,24 @@
+.
+├── README.md
+├── data-integration
+│   ├── README.md
+│   ├── airbyte-config
+│   │   └── airbyte_snowflake_setup.sql
+│   ├── destination-db
+│   │   └── init-scripts
+│   ├── docker-compose.yml
+│   ├── source-db
+│   │   ├── Dockerfile
+│   │   └── init-scripts
+│   │       ├── 01-init-dvdrental.sh
+│   │       ├── 02-init-northwind.sh
+│   │       ├── dvdrental.tar
+│   │       ├── dvdrental.zip
+│   │       └── northwind.sql
+│   └── tree.txt
+├── data-transformation
+├── docs
+├── screenshots
+└── tree.txt
+
+10 directories, 12 files
