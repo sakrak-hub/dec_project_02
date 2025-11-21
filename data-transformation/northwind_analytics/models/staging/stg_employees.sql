@@ -1,0 +1,22 @@
+{{ config(materialized='view')}}
+
+SELECT
+EMPLOYEE_ID,
+FIRST_NAME,
+LAST_NAME,
+PHOTO, 
+PHOTO_PATH,
+TITLE,
+TITLE_OF_COURTESY,
+REPORTS_TO,
+EXTENSION,  
+HIRE_DATE,
+BIRTH_DATE,
+ADDRESS, 
+HOME_PHONE, 
+CITY,
+REGION,
+COUNTRY, 
+POSTAL_CODE, 
+NOTES
+FROM {{ source('raw_northwind','employees')}}

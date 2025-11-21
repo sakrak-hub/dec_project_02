@@ -1,0 +1,33 @@
+[0m13:01:42.471640 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd7ced6cec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd7d05b07d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd7ce41c190>]}
+
+
+============================== 13:01:42.563951 | 77300c8a-c6fd-45d2-89e4-b338ac414f2e ==============================
+[0m13:01:42.563951 [info ] [MainThread]: Running with dbt=1.10.15
+[0m13:01:42.565284 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'invocation_command': 'dbt init', 'send_anonymous_usage_stats': 'True', 'log_path': 'logs', 'profiles_dir': '/home/ksakra/.dbt', 'quiet': 'False', 'log_cache_events': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'partial_parse': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'static_parser': 'True', 'target_path': 'None', 'empty': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'use_experimental_parser': 'False', 'printer_width': '80', 'write_json': 'True', 'use_colors': 'True', 'introspect': 'True', 'log_format': 'default'}
+[0m13:02:06.694717 [debug] [MainThread]: Starter project path: /mnt/d/dataengineeringcamp/dec_project_02/.venv/lib/python3.13/site-packages/dbt/include/starter_project
+[0m13:02:07.015464 [info ] [MainThread]: 
+Your new dbt project "northwind_analytics" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:02:07.016237 [info ] [MainThread]: Setting up your profile.
+[0m13:02:21.196012 [debug] [MainThread]: Snowflake adapter: Setting snowflake.connector to ERROR (file logging only)
+[0m13:02:21.196816 [debug] [MainThread]: Snowflake adapter: Setting botocore to ERROR (file logging only)
+[0m13:02:21.197539 [debug] [MainThread]: Snowflake adapter: Setting boto3 to ERROR (file logging only)
+[0m13:34:28.821406 [info ] [MainThread]: Profile northwind_analytics written to /home/ksakra/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m13:34:28.848274 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 1964.4193, "process_in_blocks": "72272", "process_kernel_time": 2.012934, "process_mem_max_rss": "132908", "process_out_blocks": "8", "process_user_time": 4.49618}
+[0m13:34:28.866851 [debug] [MainThread]: Command `dbt init` succeeded at 13:34:28.865943 after 1964.44 seconds
+[0m13:34:28.873716 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd7cc6bc510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd7cc6a0950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd7cc739480>]}
+[0m13:34:28.878365 [debug] [MainThread]: Flushing usage events
+[0m13:34:30.640547 [debug] [MainThread]: An error was encountered while trying to flush usage events

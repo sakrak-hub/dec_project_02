@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_orders
+  - name: stg_categories
+  - name: stg_customers
+  - name: stg_employees
+  - name: stg_order_details
+  - name: stg_products
+  - name: stg_shippers
+  - name: stg_suppliers

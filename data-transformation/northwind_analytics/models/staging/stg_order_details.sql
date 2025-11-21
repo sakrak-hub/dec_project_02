@@ -1,0 +1,11 @@
+{{ config(materialized='view')}}
+
+SELECT
+ORDER_ID,
+PRODUCT_ID,
+QUANTITY,
+UNIT_PRICE,
+DISCOUNT AS DISCOUNT_RATE,
+(UNIT_PRICE * (1 - DISCOUNT)) AS DISCOUNTED_PRICE,
+QUANTITY*(UNIT_PRICE * (1 - DISCOUNT)) AS TOTAL_PRICE
+FROM {{source('raw_northwind','order_details')}}

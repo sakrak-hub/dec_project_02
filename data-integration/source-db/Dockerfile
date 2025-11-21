@@ -6,6 +6,7 @@ RUN chmod +x /docker-entrypoint-initdb.d/*.sh
 
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=password
+ENV POSTGRES_DB=northwind
 
 RUN { \
     echo ''; \
