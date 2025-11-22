@@ -1,14 +1,14 @@
 {{ config(materialized='view')}}
 
 SELECT
-PRODUCT_ID, 
-UNIT_PRICE,
-CATEGORY_ID, 
-SUPPLIER_ID, 
-DISCONTINUED AS DISCONTINUED_STATUS, 
-PRODUCT_NAME, 
-REORDER_LEVEL, 
-UNITS_IN_STOCK, 
-UNITS_ON_ORDER, 
-QUANTITY_PER_UNIT
+product_id, 
+unit_price,
+category_id, 
+supplier_id, 
+discontinued as discontinued_status, 
+product_name, 
+reorder_level, 
+units_in_stock, 
+units_on_order, 
+quantity_per_unit
 FROM {{ source('raw_northwind','products')}}

@@ -1,17 +1,17 @@
 {{ config(materialized='view')}}
 
 SELECT
-CUSTOMER_ID,
-CONTACT_NAME AS CUSTOMER_NAME,
-CONTACT_TITLE,
-COMPANY_NAME,
-PHONE,
-FAX,
-ADDRESS,
-CITY,
-REGION, 
-COUNTRY,
-POSTAL_CODE
+customer_id,
+contact_name as customer_name,
+contact_title,
+company_name,
+phone,
+fax,
+address,
+city,
+region, 
+country,
+postal_code
 FROM {{source('raw_northwind', 'customers')}}
 
 

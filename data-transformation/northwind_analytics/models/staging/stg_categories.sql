@@ -1,8 +1,8 @@
 {{ config(materialized='view')}}
 
 SELECT
-CATEGORY_ID, 
-CATEGORY_NAME,
-DESCRIPTION, 
-PICTURE
+category_id, 
+category_name,
+description, 
+picture
 FROM {{source('raw_northwind','categories')}}

@@ -1,11 +1,11 @@
 {{ config(materialized='view')}}
 
 SELECT
-ORDER_ID,
-PRODUCT_ID,
-QUANTITY,
-UNIT_PRICE,
-DISCOUNT AS DISCOUNT_RATE,
-(UNIT_PRICE * (1 - DISCOUNT)) AS DISCOUNTED_PRICE,
-QUANTITY*(UNIT_PRICE * (1 - DISCOUNT)) AS TOTAL_PRICE
+order_id,
+product_id,
+quantity,
+unit_price,
+discount as discount_rate,
+(unit_price * (1 - discount)) as discounted_price,
+quantity*(unit_price * (1 - discount)) as total_price
 FROM {{source('raw_northwind','order_details')}}

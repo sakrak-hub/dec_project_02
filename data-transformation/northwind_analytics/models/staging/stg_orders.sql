@@ -1,17 +1,17 @@
 {{ config(materialized='view')}}
 
 SELECT
-ORDER_ID,
-CUSTOMER_ID,
-EMPLOYEE_ID,
-ORDER_DATE,
-REQUIRED_DATE,
-SHIPPED_DATE,
-SHIP_VIA AS SHIPPER_ID,
-FREIGHT,
-SHIP_NAME,
-SHIP_ADDRESS,
-SHIP_CITY,
-SHIP_REGION,
-SHIP_COUNTRY
+order_id,
+customer_id,
+employee_id,
+order_date,
+required_date,
+shipped_date,
+ship_via as shipper_id,
+freight,
+ship_name,
+ship_address,
+ship_city,
+ship_region,
+ship_country
 FROM {{ source('raw_northwind','orders')}}

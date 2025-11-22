@@ -1,7 +1,7 @@
 {{ config(materialized='view')}}
 
 SELECT
-PHONE, 
-SHIPPER_ID,
-COMPANY_NAME
+shipper_id,
+phone, 
+company_name
 FROM {{ source('raw_northwind','shippers')}}
