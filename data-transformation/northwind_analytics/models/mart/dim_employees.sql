@@ -1,3 +1,8 @@
+{{ config(
+    materialized='view',
+    schema='analytics'
+)}}
+
 SELECT
         {{ dbt_utils.generate_surrogate_key(['employee_id']) }} AS employee_key,
         employee_id,

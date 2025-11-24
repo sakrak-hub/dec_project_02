@@ -99,11 +99,11 @@ This pipeline models the **Sales Process**, tracking the complete journey from o
 ## Data Model
 
 ### Entity-Relationship Diagram
-
+![alt text](data-transformation/ERD-diagram.png)
 
 ### Lineage Graph
-
 ![alt text](data-transformation/lineage_graph.jpg)
+
 ### Fact Tables
 
 #### fact_orders (Transaction Grain)
