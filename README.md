@@ -100,73 +100,10 @@ This pipeline models the **Sales Process**, tracking the complete journey from o
 
 ### Entity-Relationship Diagram
 
-```
-┌──────────────────┐          ┌──────────────────┐           ┌──────────────────┐
-│  dim_customers   │          │  dim_employees   │           │  dim_shippers    │
-├──────────────────┤          ├──────────────────┤           ├──────────────────┤
-│ customer_key (PK)│          │ employee_key (PK)│           │ shipper_key (PK) │
-│ customer_id      │          │ employee_id      │           │ shipper_id       │
-│ company_name     │          │ full_name        │           │ company_name     │
-│ contact_name     │          │ title            │           │ phone            │
-│ city             │          │ reports_to       │           └──────────────────┘
-│ country          │          │ hire_date        │                     │
-└──────────────────┘          └──────────────────┘                     │
-         │                              │                              │
-         │                              │                              │
-         └──────────┬───────────────────┴──────────────────────────────┘
-                    │
-                    ▼
-         ┌────────────────────┐
-         │    fact_orders     │
-         ├────────────────────┤
-         │ order_key (PK)     │
-         │ order_id           │
-         │ customer_key (FK)  │
-         │ employee_key (FK)  │
-         │ product_key (FK)   │
-         │ category_key (FK)  │
-         │ shipper_key (FK)   │
-         │ order_date_key (FK)│
-         │ quantity           │
-         │ unit_price         │
-         │ discount           │
-         │ line_total         │
-         │ freight            │
-         │ shipped_date       │
-         └────────────────────┘
-                    │
-         ┌──────────┴──────────────────┐
-         │                             │
-         ▼                             ▼
-┌──────────────────┐          ┌──────────────────┐
-│  dim_products    │          │ dim_categories   │
-├──────────────────┤          ├──────────────────┤
-│ product_key (PK) │          │ category_key (PK)│
-│ product_id       │          │ category_id      │
-│ product_name     │────────▶ │ category_name    │
-│ category_key(FK) │          │ description      │
-│ supplier_name    │          └──────────────────┘
-│ supplier_contact │
-│ unit_price       │
-│ units_in_stock   │
-│ discontinued     │
-└──────────────────┘
-         │
-         │
-         ▼
-┌──────────────────┐
-│    dim_date      │
-├──────────────────┤
-│ date_key (PK)    │
-│ date             │
-│ year             │
-│ quarter          │
-│ month            │
-│ day_of_week      │
-│ is_weekend       │
-└──────────────────┘
-```
 
+### Lineage Graph
+
+![alt text](data-transformation/lineage_graph.jpg)
 ### Fact Tables
 
 #### fact_orders (Transaction Grain)
@@ -598,19 +535,6 @@ WHERE order_date > CURRENT_DATE()
    ```
 
 4. **Code review**: At least one team member approval required
-
-### Task Breakdown
-
-| Task | Owner | Status | Due Date |
-|------|-------|--------|----------|
-| Airbyte CDC setup | Team Member A | ✅ Complete | Nov 19 |
-| Staging models | Team Member B | ✅ Complete | Nov 20 |
-| Dimension tables | Team Member C | ✅ Complete | Nov 21 |
-| Fact tables | Team Member D | ✅ Complete | Nov 22 |
-| Data quality tests | Team Member A | ✅ Complete | Nov 22 |
-| Semantic layer | Team Member B | ✅ Complete | Nov 23 |
-| Documentation | Team Member C | ✅ Complete | Nov 23 |
-| Deployment | Team Member D | ✅ Complete | Nov 24 |
 
 ## Deployment Evidence
 
