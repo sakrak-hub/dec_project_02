@@ -102,7 +102,7 @@ This pipeline models the **Sales Process**, tracking the complete journey from o
 ![alt text](data-transformation/ERD-diagram.png)
 
 ### Lineage Graph
-![alt text](data-transformation/lineage_graph.jpg)
+![alt text](data-transformation/dbt-dag.png)
 
 ### Fact Tables
 
