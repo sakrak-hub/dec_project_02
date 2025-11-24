@@ -4,6 +4,7 @@ SELECT
 employee_id,
 first_name,
 last_name,
+first_name || ' ' || last_name as full_name,
 photo, 
 photo_path,
 title,

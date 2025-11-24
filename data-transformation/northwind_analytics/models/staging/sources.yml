@@ -30,7 +30,7 @@ sources:
             description: "Date the order was placed"
             tests:
               - not_null
-          - name: shipper_id
+          - name: ship_via
             description: "Foreign key to shippers"
             tests:
               - relationships:

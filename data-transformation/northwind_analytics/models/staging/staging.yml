@@ -106,7 +106,7 @@ models:
           - not_null
       - name: units_in_stock
         description: "Current inventory level"
-      - name: discontinued
+      - name: discontinued_status
         description: "Whether product is discontinued (0 or 1)"
         tests:
           - not_null
