@@ -1,0 +1,13 @@
+northwindstoredw:
+  outputs:
+    dev:
+      account: JJZBRFR-KN72494
+      database: WESTEND_SALES
+      password: Ultrahigh12345678
+      role: ACCOUNTADMIN
+      schema: DEV
+      threads: 1
+      type: snowflake
+      user: KN72494
+      warehouse: COMPUTE_WH
+  target: dev

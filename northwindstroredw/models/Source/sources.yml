@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: westend_sales
+    schema: raw
+    tables:
+      - name: categories
+        identifier: categories
+
+      - name: products
+        identifier: products
+      
+      - name: order_details
+        identifier: order_details
+      
+      - name: orders
+        identifier: orders
+
+      
