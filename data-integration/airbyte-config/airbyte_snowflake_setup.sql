@@ -1,10 +1,11 @@
-SET airbyte_password = '';
+USE WAREHOUSE COMPUTE_WH;
 
 SET airbyte_role = 'AIRBYTE_ROLE';
 SET airbyte_username = 'AIRBYTE_USER';
 SET airbyte_warehouse = 'AIRBYTE_WAREHOUSE';
-SET airbyte_database = 'DVD_RENTAL_ANALYTICS'; --'NORTHWIND_ANALYTICS'
+SET airbyte_database = 'NORTHWIND';
 SET airbyte_schema = 'RAW';
+SET airbyte_password = '';  
 
 begin;
 

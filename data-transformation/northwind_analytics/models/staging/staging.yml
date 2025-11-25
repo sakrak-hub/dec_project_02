@@ -1,0 +1,190 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Staging model for orders with basic transformations"
+    columns:
+      - name: order_id
+        description: "Primary key for orders"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to customers"
+        tests:
+          - not_null
+      - name: employee_id
+        description: "Foreign key to employees"
+        tests:
+          - not_null
+      - name: order_date
+        description: "Date the order was placed"
+        tests:
+          - not_null
+      - name: required_date
+        description: "Date the order is required by"
+      - name: shipped_date
+        description: "Date the order was shipped"
+      - name: shipper_id
+        description: "Foreign key to shippers"
+      - name: freight
+        description: "Freight/shipping cost"
+        tests:
+          - not_null
+          
+  - name: stg_order_details
+    description: "Staging model for order line items with calculated fields"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - order_id
+            - product_id
+    columns:
+      - name: order_id
+        description: "Foreign key to orders (part of composite key)"
+        tests:
+          - not_null
+      - name: product_id
+        description: "Foreign key to products (part of composite key)"
+        tests:
+          - not_null
+      - name: unit_price
+        description: "Price per unit at time of order"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Quantity ordered"
+        tests:
+          - not_null
+      - name: discount_rate
+        description: "Discount rate applied (0.00 to 1.00)"
+        tests:
+          - not_null
+      - name: total_price
+        description: "Calculated total price after discount"
+        tests:
+          - not_null
+          
+  - name: stg_customers
+    description: "Staging model for customers"
+    columns:
+      - name: customer_id
+        description: "Primary key for customers"
+        tests:
+          - unique
+          - not_null
+      - name: company_name
+        description: "Customer company name"
+        tests:
+          - not_null
+      - name: contact_name
+        description: "Primary contact name"
+      - name: country
+        description: "Customer country"
+      - name: city
+        description: "Customer city"
+        
+  - name: stg_products
+    description: "Staging model for products"
+    columns:
+      - name: product_id
+        description: "Primary key for products"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Product name"
+        tests:
+          - not_null
+      - name: supplier_id
+        description: "Foreign key to suppliers"
+      - name: category_id
+        description: "Foreign key to categories"
+      - name: unit_price
+        description: "Current unit price"
+        tests:
+          - not_null
+      - name: units_in_stock
+        description: "Current inventory level"
+      - name: discontinued_status
+        description: "Whether product is discontinued (0 or 1)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              
+  - name: stg_employees
+    description: "Staging model for employees"
+    columns:
+      - name: employee_id
+        description: "Primary key for employees"
+        tests:
+          - unique
+          - not_null
+      - name: last_name
+        description: "Employee last name"
+        tests:
+          - not_null
+      - name: first_name
+        description: "Employee first name"
+        tests:
+          - not_null
+      - name: full_name
+        description: "Concatenated full name"
+        tests:
+          - not_null
+      - name: title
+        description: "Job title"
+      - name: reports_to
+        description: "Manager employee ID"
+      - name: hire_date
+        description: "Date employee was hired"
+        
+  - name: stg_suppliers
+    description: "Staging model for suppliers"
+    columns:
+      - name: supplier_id
+        description: "Primary key for suppliers"
+        tests:
+          - unique
+          - not_null
+      - name: company_name
+        description: "Supplier company name"
+        tests:
+          - not_null
+      - name: contact_name
+        description: "Primary contact name"
+      - name: country
+        description: "Supplier country"
+      - name: city
+        description: "Supplier city"
+        
+  - name: stg_shippers
+    description: "Staging model for shipping companies"
+    columns:
+      - name: shipper_id
+        description: "Primary key for shippers"
+        tests:
+          - unique
+          - not_null
+      - name: company_name
+        description: "Shipper company name"
+        tests:
+          - not_null
+      - name: phone
+        description: "Shipper phone number"
+        
+  - name: stg_categories
+    description: "Staging model for product categories"
+    columns:
+      - name: category_id
+        description: "Primary key for categories"
+        tests:
+          - unique
+          - not_null
+      - name: category_name
+        description: "Category name"
+        tests:
+          - not_null
+      - name: description
+        description: "Category description"

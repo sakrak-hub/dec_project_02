@@ -1,0 +1,171 @@
+version: 2
+
+sources: 
+  - name: raw_northwind
+    database: NORTHWIND
+    schema: RAW
+    tables:
+      - name: orders
+        columns:
+          - name: order_id
+            description: "Primary key for orders"
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: "Foreign key to customers"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('raw_northwind', 'customers')
+                  field: customer_id
+          - name: employee_id
+            description: "Foreign key to employees"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('raw_northwind', 'employees')
+                  field: employee_id
+          - name: order_date
+            description: "Date the order was placed"
+            tests:
+              - not_null
+          - name: ship_via
+            description: "Foreign key to shippers"
+            tests:
+              - relationships:
+                  to: source('raw_northwind', 'shippers')
+                  field: shipper_id
+                  
+      - name: order_details
+        columns:
+          - name: order_id
+            description: "Foreign key to orders (part of composite key)"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('raw_northwind', 'orders')
+                  field: order_id
+          - name: product_id
+            description: "Foreign key to products (part of composite key)"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('raw_northwind', 'products')
+                  field: product_id
+          - name: unit_price
+            description: "Price per unit"
+            tests:
+              - not_null
+          - name: quantity
+            description: "Quantity ordered"
+            tests:
+              - not_null
+          - name: discount
+            description: "Discount rate applied"
+            tests:
+              - not_null
+              
+      - name: customers
+        columns:
+          - name: customer_id
+            description: "Primary key for customers"
+            tests:
+              - unique
+              - not_null
+          - name: company_name
+            description: "Customer company name"
+            tests:
+              - not_null
+              
+      - name: products
+        columns:
+          - name: product_id
+            description: "Primary key for products"
+            tests:
+              - unique
+              - not_null
+          - name: product_name
+            description: "Product name"
+            tests:
+              - not_null
+          - name: supplier_id
+            description: "Foreign key to suppliers"
+            tests:
+              - relationships:
+                  to: source('raw_northwind', 'suppliers')
+                  field: supplier_id
+          - name: category_id
+            description: "Foreign key to categories"
+            tests:
+              - relationships:
+                  to: source('raw_northwind', 'categories')
+                  field: category_id
+          - name: unit_price
+            description: "Price per unit"
+            tests:
+              - not_null
+          - name: discontinued
+            description: "Whether product is discontinued"
+            tests:
+              - not_null
+              - accepted_values:
+                  values: [0, 1]
+                  
+      - name: employees
+        columns:
+          - name: employee_id
+            description: "Primary key for employees"
+            tests:
+              - unique
+              - not_null
+          - name: last_name
+            description: "Employee last name"
+            tests:
+              - not_null
+          - name: first_name
+            description: "Employee first name"
+            tests:
+              - not_null
+          - name: reports_to
+            description: "Manager employee ID (self-referencing FK)"
+            tests:
+              - relationships:
+                  to: source('raw_northwind', 'employees')
+                  field: employee_id
+                  
+      - name: suppliers
+        columns:
+          - name: supplier_id
+            description: "Primary key for suppliers"
+            tests:
+              - unique
+              - not_null
+          - name: company_name
+            description: "Supplier company name"
+            tests:
+              - not_null
+              
+      - name: shippers
+        columns:
+          - name: shipper_id
+            description: "Primary key for shippers"
+            tests:
+              - unique
+              - not_null
+          - name: company_name
+            description: "Shipper company name"
+            tests:
+              - not_null
+              
+      - name: categories
+        columns:
+          - name: category_id
+            description: "Primary key for categories"
+            tests:
+              - unique
+              - not_null
+          - name: category_name
+            description: "Category name"
+            tests:
+              - not_null

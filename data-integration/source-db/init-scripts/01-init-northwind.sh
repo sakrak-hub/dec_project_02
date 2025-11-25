@@ -6,22 +6,17 @@ until pg_isready -U "$POSTGRES_USER"; do
   sleep 2
 done
 
-psql --username "$POSTGRES_USER" <<-EOSQL
-    CREATE DATABASE northwind;
-    GRANT ALL PRIVILEGES ON DATABASE northwind TO $POSTGRES_USER;
-EOSQL
+psql -U "$POSTGRES_USER" -d $POSTGRES_DB -f /docker-entrypoint-initdb.d/$POSTGRES_DB.sql
 
-psql -U "$POSTGRES_USER" -d northwind -f /docker-entrypoint-initdb.d/northwind.sql
-
-psql -U "$POSTGRES_USER" -d "northwind" <<-EOSQL
+psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" <<-EOSQL
     ALTER USER $POSTGRES_USER REPLICATION;
 EOSQL
 
-psql -U "$POSTGRES_USER" -d "northwind" <<-EOSQL
+psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" <<-EOSQL
     SELECT pg_create_logical_replication_slot('airbyte_slot_northwind', 'pgoutput');
 EOSQL
 
-psql -U "$POSTGRES_USER" -d "northwind" <<-EOSQL
+psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" <<-EOSQL
     ALTER TABLE categories REPLICA IDENTITY DEFAULT;
     ALTER TABLE customers REPLICA IDENTITY DEFAULT;
     ALTER TABLE customer_customer_demo REPLICA IDENTITY DEFAULT;
@@ -38,7 +33,7 @@ psql -U "$POSTGRES_USER" -d "northwind" <<-EOSQL
     ALTER TABLE us_states REPLICA IDENTITY DEFAULT;
 EOSQL
 
-psql -U "$POSTGRES_USER" -d "northwind" <<-EOSQL
+psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" <<-EOSQL
     CREATE PUBLICATION airbyte_publication_northwind FOR TABLE 
         categories, customers, customer_customer_demo,
         customer_demographics, employees, employee_territories,

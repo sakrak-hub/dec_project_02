@@ -1,0 +1,25 @@
+{{ config(
+    materialized='view',
+    schema='analytics'
+)}}
+
+SELECT
+        {{ dbt_utils.generate_surrogate_key(['employee_id']) }} AS employee_key,
+        employee_id,
+        title_of_courtesy,
+        first_name,
+        last_name,
+        title,
+        reports_to,
+        hire_date,
+        birth_date,
+        address,
+        city,
+        region,
+        country,
+        postal_code,
+        home_phone,
+        extension,
+        photo,
+        photo_path
+    FROM {{ ref('stg_employees') }}
