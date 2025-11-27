@@ -41,15 +41,8 @@ This pipeline models the **Sales Process**, tracking the complete journey from o
 │  RDS/Local OLTP     │         │ Integration │          │  (Bronze/Raw)    │
 └─────────────────────┘         └─────────────┘          └──────────────────┘
                                                                   │
-                                                                  ▼
-                                                         ┌─────────────────┐
-                                                         │   AWS Services  │
-                                                         ├─────────────────┤
-                                                         │  ECR: Docker    │
-                                                         │  ECS: dbt Jobs  │
-                                                         │  CloudWatch:    │
-                                                         │  Monitoring     │
-                                                         └─────────────────┘
+                                                                  |
+                                                                  |
                                                                   │
                                                                   ▼
                                                          ┌─────────────────┐
@@ -177,19 +170,7 @@ northwind-analytics/
 │       ├── target/                # dbt compilation output
 │       └── logs/
 │           └── dbt.log
-├── aws/                           # AWS deployment configs (to be added)
-│   ├── ecs/
-│   │   └── task-definition.json
-│   ├── ecr/
-│   │   └── Dockerfile
-│   └── cloudwatch/
-│       └── log-groups.json
 └── screenshots/                   # Deployment evidence
-    ├── airbyte-connection.png
-    ├── snowflake-tables.png
-    ├── ecs-tasks.png
-    ├── cloudwatch-logs.png
-    └── preset-dashboard.png
 ```
 
 ## Technical Implementation
