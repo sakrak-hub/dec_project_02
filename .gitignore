@@ -2,3 +2,4 @@ postgres-testing/
 .venv/
 .vscode/
 prateek/
+screenshots/*.jpg
